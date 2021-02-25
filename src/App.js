@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 import store from "./store";
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Archiver from './components/Archiver';
-import ArchiveBody from './components/ArchiveBody'
+import MailList from './components/MailBox/MailList';
+import MailBody from './components/MailBox/MailBody';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
       <div className="App">
 
         <Switch>
-          <Route path="/" exact component={Archiver} />
-          <Route path="/body" exact component={ArchiveBody} />
+          <Route path="/" exact component={MailList} />
+          <Route path="/body" exact component={MailBody} />
         </Switch>
       </div>
     </Router>

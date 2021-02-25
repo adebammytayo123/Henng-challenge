@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import {useDispatch} from 'react-redux'
 import { useHistory } from "react-router-dom";
-import Calender from '../assets/calender.svg';
-import Search from '../assets/search.svg';
-import Arrow1 from '../assets/arrow1.svg';
-import Logo from '../assets/logo.png';
-import Clip from '../assets/clip.svg';
-import Mail from '../assets/mail.svg';
-import Arrow2 from '../assets/arrow2.svg';
+import Calender from '../../assets/calender.svg';
+import Search from '../../assets/search.svg';
+import Arrow1 from '../../assets/arrow1.svg';
+import Logo from '../../assets/logo.png';
+import Clip from '../../assets/clip.svg';
+import Mail from '../../assets/mail.svg';
+import Arrow2 from '../../assets/arrow2.svg';
 import styled from 'styled-components';
 
-import { setBody } from "../state/actions/body"
+import { setBody } from "../../state/actions/body"
 
-import  mailInfo from "./data";
+import  mailInfo from "../data";
 
-const Inbox = () => {
+const MailList = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const [input, setInput] = useState("");
@@ -26,7 +26,6 @@ const Inbox = () => {
 
     const handleActiveBackground = (activeBackground) => {
         setActiveBackground(activeBackground);
-        // console.log("active", activeBackground)
     };
 
     const handleBody = (id) => {
@@ -51,6 +50,7 @@ const Inbox = () => {
 
 
     const dateFilter = (min, max) => {
+       // eslint-disable-next-line array-callback-return
        return mails.filter((mail) => {
             if (
                 Date.parse(mail[searchParameter]) >= Date.parse(min) &&
@@ -59,15 +59,12 @@ const Inbox = () => {
             ) {
                 return mail;
             }
-            // return mail
         }
         ) 
     }
 
     const inputHandler = (e) => {
-        console.log(e.target.value)
         setInput(e.target.value)
-
     };
 
    
@@ -82,14 +79,13 @@ const Inbox = () => {
 
     }
 
-    
-
     return (
         <ContainerWrapper className=" py-5">
             <div className="archive-search col-10 d-flex">
                 <div className="search-input mb-5">
                     <form onSubmit={handleSubmit}>
                     <input
+                        data-testid ="input"
                         className="input"
                         type="text"
                         value={input}
@@ -205,7 +201,7 @@ const Inbox = () => {
 };
 
 const ContainerWrapper = styled.div`
-background: white;
+background: white !important;
 width: 100%;
 height: 100vh;
 box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
@@ -214,6 +210,7 @@ color: var(-mainDark);
 .archive-search {
     margin-left: 3rem;
     margin-right: 3rem;
+    background: white !important;
     @media (max-width: 400px) {
         margin-left: 1.5rem;
         margin-right: 1.5rem;
@@ -312,7 +309,6 @@ color: var(-mainDark);
 }
 .mobile-archive {
     display: none;
-    /* max-height: 500px; */
     overflow-y: scroll;
     @media (max-width: 400px) {
         display: block;
@@ -368,4 +364,4 @@ div:hover {
     }
 `
 
-export default Inbox;
+export default MailList;
